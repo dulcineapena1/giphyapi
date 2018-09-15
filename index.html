@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Giphy Api</title>
+</head>
+<body>
+    
+<div id="aquibotones">
+
+</div>
+<br>  <br> <br>
+<form id="movie-form">
+        <label for="movie-input">Add a Tag</label>
+        <input type="text" id="movie-input"><br>
+  
+        <!-- Button triggers new movie to be added -->
+        <input id="add-movie" type="submit" value="Add a Movie Bro">
+</form>
+
+<div id="aquiaparecengif">
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+    var topics = ["cat", "art", "combis", "reggaeton", "kardashan"];
+    
+    function correrloop (){
+        //esta línea es para vaciar la barra de botones, ya que sino saldrían
+        //repetidos al hacer click en el boton que va generando botones
+       $("#aquibotones").empty();
+        console.log("estosson"+topics);
+        for (var i=0; i<topics.length ; i++){
+        
+        var botones =$("<button class="+topics[i]+" id='delboton'>");
+        
+        $(botones).appendTo("#aquibotones");
+        $(botones).text(topics[i]);
+        }
+    }
+
+
+    $("body").on("click","#delboton",function(){
+        $("#aquiaparecengif div").remove();
+        console.log("hola");
+        var elementos = $(this).attr("class");
+        var limite = 10;
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        elementos + "&api_key=NYvNAeTkTcDcea504P8eNTXredC15nOW&limit=" + limite +"";
+
+        $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function(response) {
+            console.log(queryURL);
+            console.log(response);
+            
+            var results = response.data;
+
+
+            for (var i = 0; i < results.length; i++) {
+                // Creating and storing a div tag
+                var divresultado = $("<div>");
+                // Creating and storing an image tag
+                var imagenresultado = $("<img>");
+                 // Creating a paragraph tag with the result item's rating
+                var p = $("<p>").text("Rating: " + results[i].rating);
+                // Setting the src attribute of the image to a property pulled off the result item
+                imagenresultado.attr("src", results[i].images.fixed_height_still.url);
+                // Appending the paragraph and image tag to the animalDiv
+                divresultado.append(p);
+                divresultado.append(imagenresultado);
+                // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+                $("#aquiaparecengif").prepend(divresultado);
+            }
+        });
+
+
+
+    });
+
+
+   var contarunclick=1;
+
+   $('body').on('click','img',function(){
+       contarunclick++;
+       if (contarunclick %2==0){
+           console.log("holi");
+            var imgclick = $(this).attr("src");
+            var imgclickeste= imgclick.split("200_s").join("200");
+            console.log(this);
+            $(this).attr("src",imgclickeste);
+       }
+
+       else {
+            var imgclick = $(this).attr("src");
+            var imgclickeste= imgclick.split("200").join("200_s");
+            $(this).attr("src",imgclickeste);
+       }
+    
+   
+   });
+
+
+
+    $("#add-movie").on("click",function(){
+        event.preventDefault();
+        console.log("huiu");
+        var agregarelemento = $("#movie-input").val().trim();
+        // The movie from the textbox is then added to our array
+        topics.push(agregarelemento);
+        console.log(topics);
+        correrloop();      
+    });
+
+    correrloop();
+    
+
+
+</script>
+
+
+
+
+</body>
+</html>

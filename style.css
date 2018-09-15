@@ -1,0 +1,87 @@
+body{
+    font-family: sans-serif;
+    background-image: url(https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX7224312.jpg);
+}
+p{
+  
+    text-align: center;
+    background-color: white;
+    height: 39px;
+    padding-top: 26px;
+    color: green;
+    font-weight: bold;
+}
+img{
+    width: 92%;
+    display: inline-flex;
+
+}
+
+#aquiaparecengif{
+    margin: auto;
+    width: 238%;
+    display: flex;
+}
+
+#aquiaparecengif div {
+    width: 40%;
+    /* margin: auto; */
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#delboton{
+    
+        outline: none;
+        margin: auto;
+        display: block;
+        width: 81px;
+        float: left;
+        padding-left: -5px;
+        margin-left: 35px;
+        background-color: blue;
+        color: white;
+        height: 44px;
+        font-weight: bold;
+        border-color: white;
+        border-bottom-left-radius: 30px;
+        border-style: hidden;
+}
+
+
+#delboton:hover{
+    border-bottom-left-radius: 0px;
+    background-color: rgb(116, 116, 236);
+    transition: 1s;
+}
+
+#movie-form{
+    
+    padding-top: 13px;
+    padding-bottom: 14px;
+    /* margin-top: 111px; */
+    margin: auto;
+    text-align: center;
+    background: white;
+    width: 18%;
+    display: inherit;
+    color: green;
+    font-weight: bold;
+}
+
+#movie-input{
+    background-color: aliceblue;
+    border-style: none;
+    height: 38px;
+    color: blue;
+    margin: 9px;
+}
+
+#add-movie{
+    background: darkseagreen;
+    font-weight: bold;
+    padding: 8px;
+    border-style: dashed;
+    color: white;
+}
